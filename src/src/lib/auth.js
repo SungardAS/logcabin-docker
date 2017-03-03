@@ -74,7 +74,7 @@ function findUser(profile, accessToken, config, callback)  {
     var username = profile.displayName || 'unknown';
     var email = profile.emails[0].value || '';
     var domain = profile._json.domain || '';
-
+    console.log(username, domain)
     if ( (  email.split('@')[1] === config.allowed_domain ) || domain === config.allowed_domain ) {
         return callback(true, username)
     } else {
