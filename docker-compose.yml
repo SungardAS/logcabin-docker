@@ -3,17 +3,13 @@ version: '2.1'
 services:
   collectd:
     image: sungardas/logcabin-docker:latest
-    network_mode: "host"
-    privileged: true
-    volumes:
-      - /etc/hostname:/mnt/hostname:ro
-      - /proc:/mnt/proc:ro
-      - /:/hostfs:ro
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /etc:/mnt/etc:ro
     environment:
-      ES_CLUSTER: 
-      PLUGINS: ""
+      LOGCABIN_HOST: 
+      API_KEY: 
+      COOKIE_SECRET: 
+      CLIENT_ID: 
+      CLIENT_SECRET: 
+      ALLOWED_DOMAIN: 
     restart: on-failure
     stop_grace_period: 10s
 

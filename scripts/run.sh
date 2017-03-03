@@ -3,5 +3,7 @@ set -xe
 
 confd -onetime -backend env
 
-exec collectd -f
+cd /opt/logcabin/
+
+exec node app
 

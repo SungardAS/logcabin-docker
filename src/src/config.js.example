@@ -1,0 +1,13 @@
+module.exports =  {
+    'host': 'http://localhost:9201',
+    'listen_port': 9201,
+    'apiKeys': ['YOUR_API_KEY'],
+    'cookie_secret': 'DAX52Zo15CWfBUnoyp4rjY',
+    'oauth_unauthenticated': ['/__es/'],
+    'oauth_application_name': 'logcabin-local',
+    'oauth_client_id': '968588183953-v3767ro0sr1parm613pmsujgrupapo3a.apps.googleusercontent.com',
+    'oauth_client_secret': 'z6t0aUbgrnIp3Ot4DtjMTB2A',
+    'allowed_domain': 'guardian.co.uk',
+    'es_host': 'localhost',
+    'es_port': 9200
+}

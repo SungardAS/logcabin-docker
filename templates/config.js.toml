@@ -1,0 +1,12 @@
+[template]
+src = "config.js.tmpl"
+dest = "/opt/logcabin/config.js"
+keys = [
+    "LOGCABIN_HOST",
+    "API_KEY",
+    "COOKIE_SECRET",
+    "CLIENT_ID",
+    "CLIENT_SECRET",
+    "ALLOWED_DOMAIN"
+]
+
