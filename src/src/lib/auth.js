@@ -33,14 +33,31 @@ exports.setup = function(express, app, config) {
     }));
 
     app.use(function(req, res, next) {
-        if (req.session.authenticated || nonAuthenticated(config, req.url) || verifyApiKey(config, req)) {
-            return next()
+        if (req.isAuthenticated()) {
+            return next();
         }
-        req.session.beforeLoginURL = req.url
-        res.redirect('/auth/github')
-    })
+        // Not logged in
+        res.redirect('/auth/github');
+        }
+
+        // if (req.session.authenticated || nonAuthenticated(config, req.url) || verifyApiKey(config, req)) {
+        //     return next()
+        // }
+        // req.session.beforeLoginURL = req.url
+        // res.redirect('/auth/github')
+    // 
+    )
     app.use(passport.initialize())
     app.use(passport.session())
+
+
+export function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    // Not logged in
+    return res.redirect('/auth/github');
+    }
 
 
     // var scope = ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email']

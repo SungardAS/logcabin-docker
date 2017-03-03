@@ -9,9 +9,7 @@ var app = express()
 
 console.log('Logcabin starting...')
 
-app.use(sessions({ secret: config.cookie_secret,
-  resave: false,
-  saveUnitialized: true }))
+app.use(sessions({ secret: config.cookie_secret, resave: false, saveUnitialized: true }))
 
 auth.setup(express, app, config)
 
