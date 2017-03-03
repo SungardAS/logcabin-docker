@@ -51,13 +51,13 @@ exports.setup = function(express, app, config) {
     app.use(passport.session())
 
 
-export function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    // Not logged in
-    return res.redirect('/auth/github');
-    }
+// export function ensureAuthenticated(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         return next();
+//     }
+//     // Not logged in
+//     return res.redirect('/auth/github');
+//     }
 
 
     // var scope = ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email']
