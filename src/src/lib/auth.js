@@ -1,6 +1,6 @@
 var request = require('request')
 var passport = require('passport')
-var GithubStrategy = require('passport-github-oauth').OAuth2Strategy
+var GithubStrategy = require('passport-github2').Strategy
 
 
 exports.setup = function(express, app, config) {
@@ -23,8 +23,8 @@ exports.setup = function(express, app, config) {
             clientSecret: config.oauth_client_secret,
             callbackURL: callbackUrl
         }, function(accessToken, refreshToken, profile, done) {
-            process.nextTick(function () {
-              return done(null, profile);
+            User.findOrCreate({ githubId: profile.id }, function (err, user) {
+                return done(err, user);
             });
             // findUser(profile, accessToken, config, function(succeed, msg) {
             //     return succeed ? done(null, profile): done(null, false, { message: msg})
