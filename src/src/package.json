@@ -6,7 +6,7 @@
         "connect-restreamer": "*",
         "express": "3.*",
         "passport": "*",
-        "passport-github": "*",
+        "passport-github2": "*",
         "passport-google-oauth": "*",
         "request": "2.34.x",
         "client-sessions": "0.6.0"
