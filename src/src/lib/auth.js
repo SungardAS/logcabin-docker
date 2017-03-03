@@ -29,7 +29,7 @@ exports.setup = function(express, app, config) {
             // findUser(profile, accessToken, config, function(succeed, msg) {
             //     return succeed ? done(null, profile): done(null, false, { message: msg})
             // })
-            console.log(clientID, ClientSecret, callbackURL)
+            console.log(accessToken, refreshToken, profile)
     }));
 
     app.use(function(req, res, next) {
