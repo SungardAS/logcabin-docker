@@ -1,0 +1,6 @@
+[template]
+src = "base.conf.tmpl"
+dest = "/etc/base.conf"
+keys = [
+]
+

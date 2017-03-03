@@ -1,0 +1,5 @@
+#!/bin/sh
+set -xe
+
+bash -c "/usr/local/bin/ec2-metadata $@" | awk '{print $2}'
+
