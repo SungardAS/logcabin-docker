@@ -7,7 +7,7 @@ exports.setup = function(express, app, config) {
 
     console.log('Github OAuth2 authentication used')
 
-    console.log(app, config)
+    console.log(express, app, config) // REMOVE
     passport.serializeUser(function(user, done) {
       done(null, user)
     })
