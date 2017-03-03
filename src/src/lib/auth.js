@@ -26,9 +26,10 @@ exports.setup = function(express, app, config) {
             // User.findOrCreate({ githubId: profile.id }, function (err, user) {
             //     return done(err, user);
             // });
-            findUser(profile, accessToken, config, function(succeed, msg) {
-                return succeed ? done(null, profile): done(null, false, { message: msg})
-            })
+            // findUser(profile, accessToken, config, function(succeed, msg) {
+            //     return succeed ? done(null, profile): done(null, false, { message: msg})
+            // })
+            console.log(clientID, ClientSecret, callbackURL)
     }));
 
     app.use(function(req, res, next) {
@@ -74,7 +75,7 @@ function findUser(profile, accessToken, config, callback)  {
     var username = profile.displayName || 'unknown';
     var email = profile.emails[0].value || '';
     var domain = profile._json.domain || '';
-    console.log(username, domain)
+
     if ( (  email.split('@')[1] === config.allowed_domain ) || domain === config.allowed_domain ) {
         return callback(true, username)
     } else {
