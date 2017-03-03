@@ -23,12 +23,12 @@ exports.setup = function(express, app, config) {
             clientSecret: config.oauth_client_secret,
             callbackURL: callbackUrl
         }, function(accessToken, refreshToken, profile, done) {
-            User.findOrCreate({ githubId: profile.id }, function (err, user) {
-                return done(err, user);
-            });
-            // findUser(profile, accessToken, config, function(succeed, msg) {
-            //     return succeed ? done(null, profile): done(null, false, { message: msg})
-            // })
+            // User.findOrCreate({ githubId: profile.id }, function (err, user) {
+            //     return done(err, user);
+            // });
+            findUser(profile, accessToken, config, function(succeed, msg) {
+                return succeed ? done(null, profile): done(null, false, { message: msg})
+            })
     }));
 
     app.use(function(req, res, next) {
@@ -70,18 +70,18 @@ function nonAuthenticated(config, url) {
     return url.indexOf('/auth/github') === 0 || config.oauth_unauthenticated.indexOf(url) > -1
 }
 
-// function findUser(profile, accessToken, config, callback)  {
-//     var username = profile.displayName || 'unknown';
-//     var email = profile.emails[0].value || '';
-//     var domain = profile._json.domain || '';
+function findUser(profile, accessToken, config, callback)  {
+    var username = profile.displayName || 'unknown';
+    var email = profile.emails[0].value || '';
+    var domain = profile._json.domain || '';
 
-//     if ( (  email.split('@')[1] === config.allowed_domain ) || domain === config.allowed_domain ) {
-//         return callback(true, username)
-//     } else {
-//         console.log('access refused to: ' + username + ' (email=' + email + ';domain=' + domain + ')');
-//         return callback(false, username + ' is not authorized')
-//     }
-// }
+    if ( (  email.split('@')[1] === config.allowed_domain ) || domain === config.allowed_domain ) {
+        return callback(true, username)
+    } else {
+        console.log('access refused to: ' + username + ' (email=' + email + ';domain=' + domain + ')');
+        return callback(false, username + ' is not authorized')
+    }
+}
 
 function verifyApiKey(config, req)  {
     var apiKey = req.headers['authorization'] || '';
